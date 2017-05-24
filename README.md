@@ -5,4 +5,4 @@ The essence of the infrastructure is that data, stored in e.g. a MySQL relationa
 In the development stage (see figure 1) a series of vocabularies or ontologies is created that will be used to express the data. These semantic models adhere to the [model theory of W3C RDF, RDFS](https://www.w3.org/TR/2002/WD-rdf-mt-20020429/), and [OWL Full](https://www.w3.org/TR/owl-semantics/).  
 Further a comma-separated values (CSV)-file is created to enable the mapping between the old (e.g. MySQL) and the new (RDF/S-OWL) data format.  
 A script written in Python will use at runtime the CSV-mapping file to convert the original data to a JSON (JavaScript Object Notation) format, which in turn will pass via a REST (Representational state transfer) Web service the Knora API, and finally be stored in an RDF graph database (triple store).  
-![figure](https://github.com/nie-ine/Scripts/blob/master/MySQL-migration.png).
+![figure](https://github.com/nie-ine/Scripts/blob/master/MySQL-migration.png)
