@@ -1,0 +1,6 @@
+doctor,hasId,1,hasPatient,1,hasAddress,GoodStreet 1,hasName,Dr. Oetker,2659012
+doctor,hasId,2,hasPatient,2,hasAddress,BadStreet 2,hasName,Dr. Schiwago,2659013
+doctor,hasId,3,hasPatient,3,hasAddress,Sunny Street 3,hasName,Dr. No,2659014
+doctor,hasId,4,hasPatient,2,hasAddress,Shady Street 4,hasName,Dr. Dre,2659015
+doctor,hasId,5,hasPatient,1,hasAddress,Windy Street,hasName,Dr. Who,2659016
+doctor,hasId,6,hasPatient,3,hasAddress,Wallstreet,hasName,Dr. Mabuse,2659017

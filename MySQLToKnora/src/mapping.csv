@@ -1,0 +1,7 @@
+fromMySQLTable,mySQLColumnName,subject,predicate,linkedToTable,column
+doctor,id,doctor,hasId,,
+doctor,patient_id,doctor,hasPatient,patient,hasId
+doctor,address,doctor,hasAddress,,
+doctor,name,doctor,hasName,,
+person,id,patient,hasId,,
+person,name,patient,hasName,,
