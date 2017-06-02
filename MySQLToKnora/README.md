@@ -13,7 +13,7 @@
 * Execute the script
 
 
-##Example Walkthrough
+## Example Walkthrough
 * Imagine you have the following [mysql dump](https://github.com/nie-ine/Scripts/blob/master/MySQLToKnora/src/dump.sql) that you want to import to Knora
 * Create a mapping between the mysql scheme and the triples, it could look like this:
 ![figure](mapping.png)
