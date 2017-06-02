@@ -13,10 +13,10 @@ from sendToKnora import sendToKnora
 
 
 _ENCODING = 'utf-8'
-_PROJ_PREFIX = "nie-ine"
-_KNORA_USR_NAME = "stoffregen"
-_KNORA_PASSWORD = "nie-stoffregen-ine"
-_KNORA_SERVER = 'http://test-02.salsah.org'
+_PROJ_PREFIX = "*****"                      #Enter your project prefix
+_KNORA_USR_NAME = "****"                    #Enter your credentials here
+_KNORA_PASSWORD = "*******"                 #Enter your credentials here
+_KNORA_SERVER = '*********'                 #Enter the URL of the Knora Instance here
 
 def get_db_connection():
     try:
