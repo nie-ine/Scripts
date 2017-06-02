@@ -10,6 +10,7 @@
 * Enter your Credentials in the import.py file
 * Enter the URL of the Knora instance that you would like to use
 * Create the mapping
+* Create the resources in Knora
 * Execute the script
 
 
