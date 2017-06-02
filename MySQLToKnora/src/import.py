@@ -20,7 +20,7 @@ _KNORA_SERVER = 'http://test-02.salsah.org'
 
 def get_db_connection():
     try:
-        cnx = mysql.connector.connect(user='janstoffregen',
+        cnx = mysql.connector.connect(user='root',
                                       password='',
                                       host='127.0.0.1',
                                       database='c9')
