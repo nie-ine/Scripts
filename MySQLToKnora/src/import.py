@@ -13,10 +13,10 @@ from sendToKnora import sendToKnora
 
 
 _ENCODING = 'utf-8'
-_PROJ_PREFIX = "*****"                      #Enter your project prefix
-_KNORA_USR_NAME = "****"                    #Enter your credentials here
-_KNORA_PASSWORD = "*******"                 #Enter your credentials here
-_KNORA_SERVER = '*********'                 #Enter the URL of the Knora Instance here
+_PROJ_PREFIX = "nie-ine"                      #Enter your project prefix
+_KNORA_USR_NAME = "stoffregen"                    #Enter your credentials here
+_KNORA_PASSWORD = "nie-stoffregen-ine"                 #Enter your credentials here
+_KNORA_SERVER = 'http://test-02.salsah.org/'                 #Enter the URL of the Knora Instance here
 
 def get_db_connection():
     try:
@@ -86,7 +86,7 @@ def main():
         print("File dump.sql not found")
         return
         
-    os.system('mysql-ctl start')
+    #os.system('mysql-ctl start')
     os.system('mysql -u root c9 < dump.sql')
         
     mapping = read_mapping('mapping.csv')

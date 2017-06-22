@@ -2,7 +2,7 @@
 # -*- encoding: UTF-8 -*-
 #
 
-import log
+#import log
 
 """pClasses.py
 
@@ -91,14 +91,14 @@ class JPerson(PCBase):
         super(PCBase, self).__init__()
         global _SEQNUM
         
-        log.footnote("###4. Specify project prefix in header")
+        #log.footnote("###4. Specify project prefix in header")
         self._PROJ_PREFIX = _PROJ_PREFIX
         
-        log.footnote("###5. Specify name of the resource")
+        #log.footnote("###5. Specify name of the resource")
         self._RESTYPE = "JansImageResource"
         self._RESOURCE_ID = None
         
-        log.footnote("###6. Specify image path here if the resource has one.")
+        #log.footnote("###6. Specify image path here if the resource has one.")
         
         image=None #"/Users/system/Desktop/logo.jpg"
         
@@ -108,7 +108,7 @@ class JPerson(PCBase):
         self._IMAGE = image
 
 
-        log.footnote("###7. Specify name of property (in this example it's hasName)")
+        #log.footnote("###7. Specify name of property (in this example it's hasName)")
         self.hasName = name
         self.seqnum = _SEQNUM
         _SEQNUM += 1
