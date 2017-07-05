@@ -1,0 +1,67 @@
+ - name: "Update Kernel"
+   command: yum update kernel -y
+
+ - name: "Update"
+   command: yum update -y
+
+ - name: "Upgrade"
+   command: yum upgrade
+
+ - name: "Install git"
+   yum: 
+     name: git
+     state: latest
+
+ - name: "Install yum utils"
+   command: yum install -y yum-utils device-mapper-persistent-data lvm2
+
+ - name: "Enable extras CentOS repository"
+   command: yum-config-manager --enable extras
+
+ - name: "Setup stable repository"
+   command: yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+
+ - name: "Make cache fast"
+   command: yum makecache fast
+
+ - name: "Install docker"
+   command: yum install docker-ce -y
+
+ - name: "Copy and unarchive"
+   unarchive:
+     src: /home/ubuntu/InstallKnoraSalsahSipi.zip
+     dest: /root/
+ 
+ - name: "Start Docker"
+   command: systemctl start docker
+
+ - name: "Make Script executable"
+   command:  chmod 755 ~/InstallKnoraSalsahSipi/SetUpKnoraSalsahSipi.sh
+
+ - name: "Clone Salsah"
+   git: 
+     repo: https://github.com/nie-ine/Salsah.git
+     dest: /root/Salsah
+
+ - name: "Install needed packages for npm"
+   command: yum install -y gcc-c++ make
+
+ - name: "Get Package"
+   command: curl -sL https://rpm.nodesource.com/setup_6.x
+
+ - name: "Install npm"
+   command: yum install nodejs -y
+
+ - name: "Update npm"
+   command: npm install -g npm@latest
+
+ - name: "Install angular cli"
+   command: npm install --unsafe-perm --verbose -g @angular/cli@1.0.0
+
+ - name: "npm install in Salsah"
+   npm: 
+     path: /root/Salsah
+
+# Do it manually for now.
+# - name: "Execute Script"
+#   script: /root/InstallKnoraSalsahSipi/SetUpKnoraSalsahSipi.sh
