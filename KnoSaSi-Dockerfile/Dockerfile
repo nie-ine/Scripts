@@ -1,4 +1,7 @@
 # docker build .
+# docker run --rm -p 7200:7200 dhlabbasel/graphdb-free
+# docker rm -f $(docker ps -a -q)
+# docker rmi $(docker images -q)
 
 
 FROM nieine/sipi
@@ -30,6 +33,10 @@ ENV JAVA_HOME="/usr/lib/jvm/java-8-openjdk-amd64"
 
 RUN git clone https://github.com/dhlab-basel/Knora.git
 
+RUN cd /Knora/webapi && sbt compile
+
+EXPOSE 3333
+
 
 #
 # Install Free GraphDB Dependencies - taken from Dockerfile dhlabbasle - graphdb-free
@@ -57,8 +64,35 @@ RUN \
   rm /tmp/graphdb.zip && \
   rm -rf /knora
 
+#RUN apt-get install expect
+
 # Set GraphDB Max and Min Heap size
 ENV GDB_HEAP_SIZE="4g"
 
 EXPOSE 7200
+
+
+#
+# Install Angular Dependencies
+#
+RUN apt-get install expect -y
+RUN curl -sL https://deb.nodesource.com/setup_6.x | bash -
+RUN apt-get install -y nodejs
+RUN npm install -g @angular/cli
+RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
+RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
+RUN apt-get update && apt-get install yarn
+RUN git clone https://github.com/dhlab-basel/Salsah.git
+RUN cd /Salsah && yarn install --production=false
+EXPOSE 4200
+
 CMD ["/graphdb/bin/graphdb"]
+
+
+#in the end:
+#RUN cd /Knora/webapi/scripts && ./graphdb-free-init-knora-test.sh
+#RUN cd /Knora/webapi && sbt compile
+#RUN cd /Knora/webapi && sbt re-start
+#RUN cd /Salsah/ && ng serve --host 0.0.0.0
+#docker run --rm -p 7200:7200 -p 4200:4200 -p 3333:3333 -p 1024:1024 knosasi:latest /bin/bash -c "cd /Salsah; ng serve --host 0.0.0.0 "
+#docker run --rm -p 7200:7200 -p 4200:4200 -p 3333:3333 -p 1024:1024 f213d851c354 /bin/bash -c "cd /Knora/webapi; sbt compile "~re-start allowResetTriplestoreContentOperationOverHTTP""
