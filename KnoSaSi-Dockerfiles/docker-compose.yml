@@ -1,0 +1,28 @@
+version: "3"
+
+services:
+  graphdb:
+    image: dhlabbasel/graphdb-free
+    ports:
+      - 7200:7200
+
+  knora:
+    build: ./Knora
+    ports:
+      - 3333:3333
+    depends_on:
+      - graphdb
+
+  sipi:
+    image: nieine/sipi
+    ports:
+      - 1024:1024
+    volumes:
+      - /tmp:/tmp
+      - $HOME:$HOME
+      - /Users/jan/SipiImages:/sipi/images
+
+  salsah:
+    build: ./Salsah
+    ports:
+      - 4200:4200
