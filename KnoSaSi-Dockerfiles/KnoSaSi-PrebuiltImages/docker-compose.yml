@@ -9,7 +9,7 @@ services:
       - salsah
 
   knora:
-    build: ./Knora
+    image: nieine/knora
     ports:
       - 3333:3333
     depends_on:
@@ -31,6 +31,6 @@ services:
      - "webapihost:10.12.248.127"
 
   salsah:
-    build: ./Salsah
+    image: nieine/salsah
     ports:
       - 4200:4200

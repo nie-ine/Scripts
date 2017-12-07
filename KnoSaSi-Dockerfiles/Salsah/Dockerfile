@@ -17,6 +17,7 @@ RUN apt-get update && apt-get install yarn
 RUN apt-get install -y git
 RUN git clone https://github.com/dhlab-basel/Salsah.git
 RUN cd /Salsah && yarn install --production=false
+WORKDIR /Salsah
 EXPOSE 4200
 
-CMD ["cd Salsah && ng serve --host 0.0.0.0"]
+CMD ng serve --host 0.0.0.0
