@@ -15,20 +15,19 @@ services:
     depends_on:
       - graphdb
     volumes:
-      - /Users/jan/Desktop/Knora/webapi/src/main:/Knora/webapi/src/main
-      - /Users/jan/Desktop/webapiTemp:/tmp/webapi_tmp/
+      - ./Knora/webapi/src/main:/Knora/webapi/src/main
+      - ./webapiTmp:/tmp/webapi_tmp/
 
   sipi:
     image: nieine/sipi
     ports:
       - 1024:1024
     volumes:
-      - /tmp:/tmp
+      - ./tmp:/tmp
       - $HOME:$HOME
-      - /Users/jan/SipiImages:/sipi/images
-      - /Users/jan/Desktop/webapiTemp:/tmp/webapi_tmp/
-    extra_hosts:
-     - "webapihost:10.12.248.127"
+      - ./images:/sipi/images
+      - ../Knora/webapiTemp:/tmp/webapi_tmp/
+      - ../KnoSaSi-PrenuiltImages/sipiConfig:/sipi/config
 
   salsah:
     build: ./Salsah
