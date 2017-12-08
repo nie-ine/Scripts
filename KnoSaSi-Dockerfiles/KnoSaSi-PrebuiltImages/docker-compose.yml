@@ -15,7 +15,7 @@ services:
     depends_on:
       - graphdb
     volumes:
-      - ./tmp/webapimp:/tmp/webapi_tmp/
+      - ./tmp/webapi_tmp:/tmp/webapi_tmp/
 
   sipi:
     image: nieine/sipi
@@ -25,9 +25,8 @@ services:
       - ./tmp:/tmp
       - $HOME:$HOME
       - ./images:/sipi/images
-      - ./tmp/webapitmp:/tmp/webapi_tmp/
-    extra_hosts:
-     - "webapihost:10.12.248.127"
+      - ./tmp/webapi_tmp:/tmp/webapi_tmp/
+      - ./sipiConfig:/sipi/config
 
   salsah:
     image: nieine/salsah
