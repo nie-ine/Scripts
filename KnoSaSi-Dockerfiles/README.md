@@ -1,6 +1,6 @@
 ## Get Knora, Salsah, Sipi and GraphDB up and running with Docker
 
-###Attention: Ontologies in GraphDB are not stored in a persistent way yet.  This will be the next step and will come soon.
+### Attention: Ontologies in GraphDB are not stored in a persistent way yet.  This will be the next step and will come soon.
 
 ### Prerequisites:
  - Install Docker
