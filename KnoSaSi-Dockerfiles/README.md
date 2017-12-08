@@ -1,14 +1,14 @@
-##Get Knora, Salsah, Sipi and GraphDB up and running with Docker
+## Get Knora, Salsah, Sipi and GraphDB up and running with Docker
 
 ###Attention: Ontologies in GraphDB are not stored in a persistent way yet.  This will be the next step and will come soon.
 
-###Prerequisites:
+### Prerequisites:
  - Install Docker
  - Increase Memory and CPUs that Docker is allowed to use. It works with 10 GB, maybe less as well.
 	 - 	Mac: Go to Docker > Preferences > Advanced
 	 - If images stop running without an explanation, you might need to increase the memory a little bit more.
 
-###Deployment alternatives
+### Deployment alternatives
 You can find two alternatives here to perform the deployment.
 
 1. Fast and recommended alternative: Go to the KnoSaSi-PrebuiltImages - Folder and follow the instructions below. This alternative will pull all images from Dockerhub and get them up and running.
