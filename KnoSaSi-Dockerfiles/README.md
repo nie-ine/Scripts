@@ -30,6 +30,7 @@ To finalise the setup...
 | 5 | Start the containers: docker-compose up | x | x |
 | 6 | After GraphDB is running: cd to Knora/webapi/scripts and execute the script ./graphdb-free-init-knora-test.sh | x | x |
 | 7 | Restart Knora: docker restart "container id of Knora". You find the container id of the knora container by typing "docker ps". | x | x |
+| 8 | Execute the import Script in ImportPictureTest with python3. Before, change the label in the python script on line 10 to an individual name. If you get a json with the resource back from knora after executing the code and if you can find the resource and the picture in Salsah using the full text search searching for the given label, your setup is working. | x | x |
 
 The services are available at:
 
