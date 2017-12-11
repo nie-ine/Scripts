@@ -4,6 +4,8 @@
 
 ### Prerequisites:
  - Install Docker
+ - You need to have 20GB of free storage
+ - You might need to install "expect" for step 5. Check if you have it installed: <pre>expect -v</pre>
  - If you use Mac OS X: Increase Memory and CPUs that Docker is allowed to use. It works with 10 GB, maybe less as well.
 	 - 	Mac: Go to Docker > Preferences > Advanced
 	 - If images stop running without an explanation, you might need to increase the memory a little bit more.
@@ -16,30 +18,19 @@ You can find two alternatives here to perform the deployment.
 
 After you have chosen your alternative, only perform the instructions that are necessary as indicated below for the alternative that you have chosen.
 
-|   | Instructions   | Alternative 1| Alternative 2  |
+|   | Instructions   | Alternative 1| Alternative 2  | 
 |--:| ------------- |:-------------:| :-----:        |
 | 0 | If you use Mac OS X: Make sure that you have increased the memory allocated to Docker as described above under "Prerequisites" | x | x |
-| 1 | <pre>git clone https://github.com/nie-ine/Scripts.git | x | x |
-| 2 | <pre>git clone https://github.com/dhlab-basel/Knora.git  | x in Scripts/KnoSaSi-Dockerfiles/Knora | <--- x |
-| 3 | Change hostname for graphdb to "graphdb" and sipi to "sipi", both are localhost before this change.|  | x in Knora/webapi /src /main /resources /application.conf|
+| 1 | <pre>git clone --recursive https://github.com/nie-ine/Scripts.git | x | x |
+| 2 | Change hostname for graphdb to "graphdb" and sipi to "sipi", both are localhost before this change.| not necessary for alternative 1 | x in Knora/webapi /src /main /resources /application.conf|
+| 3 | Map the name sipi to the ip address of localhost. e.g. next to localhost the name sipi should be mapped to the same ip adress as localhost. <pre>sudo vi /etc/hosts</pre> The file should contain the following lines:<pre>127.0.0.1       localhost</pre><pre>127.0.0.1       sipi</pre>| x in /etc/hosts file | <--- x|
+| 4 | <pre>docker-compose up</pre> Wait until Salsah, Sipi and GraphDB are running. Knora should not give any response at this point. The services are available at: Sipi: localhost:1024, Knora: localhost:3333, GraphDB: localhost:7200, Salsah: localhost:4200 | x in Scripts/KnoSaSi-Dockerfiles/KnoSaSi-PrebuiltImages | x in Scripts/KnoSaSi-Dockerfiles/ |
+| 5 | After GraphDB is running: Open another terminal and import the test data into GraphDB/Knora <pre>./graphdb-free-init-knora-test.sh | x in Scripts/ Knora/ Knora/ webapi/scripts | <--- x |
+| 6 | You find the alphanumeric container id of the knora container by typing <pre>docker ps</pre> Afterwards, please restart Knora so that it can process the data that has been imported to GraphDB<pre>docker restart "container id of Knora"</pre> Finally, if you reload Salsah on localhost:4200, you should see the imported data already.| x | x |
+| 7 | <pre>mkdir -p ./images/knora/{A..Z}</pre> Sipi will store the images in this folder structure | x in Scripts/KnoSaSi-Dockerfiles/KnoSaSi-PrebuiltImages | x in Scripts/KnoSaSi-Dockerfiles/Sipi |
+| 8 | Change the label in the python script on line 10 to an individual name. Execute the import Script in ImportPictureTest with python3. You need the pypthon package requests which you can install in the following way. <pre>pip3 install requests</pre> Execute the script.<pre>python3 import.py</pre> If you get a json with the resource description back from knora after executing the code and if you can find the resource and the picture in Salsah using the full text search searching for the given label, your setup is working.  | x in Scripts/KnoSaSi-Dockerfiles/ImportPictureTest  | <--- x |
 
-To finalise the setup...
 
-|   | Instructions   | Alternative 1| Alternative 2  |
-|--:| ------------- |:-------------:| :-----:        |
-| 4 | Map the name sipi to the ip address of localhost. e.g. next to localhost the name sipi should be mapped to the same ip adress as localhost. | x in /etc/hosts file | <--- x|
-| 5 | <pre>docker-compose up  | x in Scripts/KnoSaSi-Dockerfiles/KnoSaSi-PrebuiltImages | x in Scripts/KnoSaSi-Dockerfiles/ |
-| 6 | After GraphDB is running: <pre>./graphdb-free-init-knora-test.sh | x in Scripts/ Knora/ Knora/ webapi/scripts | <--- x |
-| 7 | <pre>docker restart "container id of Knora"</pre> You find the container id of the knora container by typing <pre>docker ps</pre>Afterwards, if you go  reload Salsah in your Browser, you should see the imported data already.| x | x |
-| 8 | <pre>mkdir ./images && cd images</pre><pre>mkdir ./knora && cd knora</pre><pre>for char in {A..Z}; do mkdir $char; done;</pre> | x in Scripts/KnoSaSi-Dockerfiles/KnoSaSi-PrebuiltImages | x in Scripts/KnoSaSi-Dockerfiles/Sipi |
-| 9 | Execute the import Script in ImportPictureTest with python3. Before, change the label in the python script on line 10 to an individual name. If you get a json with the resource back from knora after executing the code and if you can find the resource and the picture in Salsah using the full text search searching for the given label, your setup is working. | x in Scripts/KnoSaSi-Dockerfiles/ImportPictureTest  | <--- x |
-
-The services are available at:
-
- - Sipi: localhost:1024
- - Knora: localhost:3333
- - GraphDB: localhost:7200
- - Salsah: localhost:4200
 
  
 If you would like to stop the containers:
