@@ -1,0 +1,3 @@
+[submodule "docker-compose-deployment-Knora-Salsah-Sipi-GraphDB/Knora/Knora"]
+	path = docker-compose-deployment-Knora-Salsah-Sipi-GraphDB/Knora/Knora
+	url = https://github.com/dhlab-basel/Knora.git
