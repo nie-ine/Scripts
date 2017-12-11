@@ -19,19 +19,19 @@ After you have chosen your alternative, only perform the instructions that are n
 |   | Instructions   | Alternative 1| Alternative 2  |
 |--:| ------------- |:-------------:| :-----:        |
 | 1 | <pre>git clone https://github.com/nie-ine/Scripts.git | x | x |
-| 2 | <pre>git clone https://github.com/dhlab-basel/Knora.git  | x in Scripts/KnoSaSi-Dockerfiles/Knora | x in Scripts/KnoSaSi-Dockerfiles/Knora |
+| 2 | <pre>git clone https://github.com/dhlab-basel/Knora.git  | x in Scripts/KnoSaSi-Dockerfiles/Knora | <--- x |
 | 3 | Change hostname for graphdb to "graphdb" and sipi to "sipi", both are localhost before this change.|  | x in Knora/webapi /src /main /resources /application.conf|
 
 To finalise the setup...
 
 |   | Instructions   | Alternative 1| Alternative 2  |
 |--:| ------------- |:-------------:| :-----:        |
-| 4 | Map the name sipi to the ip address of localhost. e.g. next to localhost the name sipi should be mapped to the same ip adress as localhost. | x in /etc/hosts file | x in /etc/hosts file|
+| 4 | Map the name sipi to the ip address of localhost. e.g. next to localhost the name sipi should be mapped to the same ip adress as localhost. | x in /etc/hosts file | <--- x|
 | 5 | <pre>docker-compose up  | x in Scripts/KnoSaSi-Dockerfiles/KnoSaSi-PrebuiltImages | x in Scripts/KnoSaSi-Dockerfiles/ |
-| 6 | After GraphDB is running: <pre>./graphdb-free-init-knora-test.sh | x in Scripts/ Knora/ Knora/ webapi/scripts | x in Scripts/ Knora/ Knora/ webapi/scripts |
+| 6 | After GraphDB is running: <pre>./graphdb-free-init-knora-test.sh | x in Scripts/ Knora/ Knora/ webapi/scripts | <--- x |
 | 7 | <pre>docker restart "container id of Knora"</pre> You find the container id of the knora container by typing <pre>docker ps</pre>Afterwards, if you go  reload Salsah in your Browser, you should see the imported data already.| x | x |
 | 8 | <pre>mkdir ./images && cd images</pre><pre>mkdir ./knora && cd knora</pre><pre>for char in {A..Z}; do mkdir $char; done;</pre> | x in Scripts/KnoSaSi-Dockerfiles/KnoSaSi-PrebuiltImages | x in Scripts/KnoSaSi-Dockerfiles/Sipi |
-| 9 | Execute the import Script in ImportPictureTest with python3. Before, change the label in the python script on line 10 to an individual name. If you get a json with the resource back from knora after executing the code and if you can find the resource and the picture in Salsah using the full text search searching for the given label, your setup is working. | x in  | x |
+| 9 | Execute the import Script in ImportPictureTest with python3. Before, change the label in the python script on line 10 to an individual name. If you get a json with the resource back from knora after executing the code and if you can find the resource and the picture in Salsah using the full text search searching for the given label, your setup is working. | x in Scripts/KnoSaSi-Dockerfiles/ImportPictureTest  | <--- x |
 
 The services are available at:
 
