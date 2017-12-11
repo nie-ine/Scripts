@@ -18,6 +18,7 @@ After you have chosen your alternative, only perform the instructions that are n
 
 |   | Instructions   | Alternative 1| Alternative 2  |
 |--:| ------------- |:-------------:| :-----:        |
+| 0 | Make sure that you have increased the memory allocated to Docker as described above under "Prerequisites" | x | x |
 | 1 | <pre>git clone https://github.com/nie-ine/Scripts.git | x | x |
 | 2 | <pre>git clone https://github.com/dhlab-basel/Knora.git  | x in Scripts/KnoSaSi-Dockerfiles/Knora | <--- x |
 | 3 | Change hostname for graphdb to "graphdb" and sipi to "sipi", both are localhost before this change.|  | x in Knora/webapi /src /main /resources /application.conf|
