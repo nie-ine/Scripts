@@ -30,7 +30,7 @@ To finalise the setup...
 | 5 | <pre>docker-compose up  | x in Scripts/KnoSaSi-Dockerfiles/KnoSaSi-PrebuiltImages | x in Scripts/KnoSaSi-Dockerfiles/ |
 | 6 | After GraphDB is running: <pre>./graphdb-free-init-knora-test.sh | x in Scripts/ Knora/ Knora/ webapi/scripts | x in Scripts/ Knora/ Knora/ webapi/scripts |
 | 7 | <pre>docker restart "container id of Knora"</pre> You find the container id of the knora container by typing <pre>docker ps</pre>Afterwards, if you go  reload Salsah in your Browser, you should see the imported data already.| x | x |
-| 8 | <pre>mkdir ./images && cd images</pre> <pre>mkdir ./knora && cd knora</pre> <pre>	for char in {A..Z}; do mkdir $char; done;</pre> | x in Scripts/KnoSaSi-Dockerfiles/KnoSaSi-PrebuiltImages | x in Scripts/KnoSaSi-Dockerfiles/Sipi |
+| 8 | <pre>mkdir ./images && cd images</pre><pre>mkdir ./knora && cd knora</pre><pre>for char in {A..Z}; do mkdir $char; done;</pre> | x in Scripts/KnoSaSi-Dockerfiles/KnoSaSi-PrebuiltImages | x in Scripts/KnoSaSi-Dockerfiles/Sipi |
 | 9 | Execute the import Script in ImportPictureTest with python3. Before, change the label in the python script on line 10 to an individual name. If you get a json with the resource back from knora after executing the code and if you can find the resource and the picture in Salsah using the full text search searching for the given label, your setup is working. | x in  | x |
 
 The services are available at:
