@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 
 import json
-from knora.ontologies.kbo import ONTOLOGY_PREFIX
 
 """
 knora-base:hasValue: definition of class knora-base:hasValue
@@ -23,7 +22,7 @@ class HasValue(object):
 
     """
 
-    _ontology_prefix = ONTOLOGY_PREFIX
+    _ontology_prefix = "http://www.knora.org/ontology"
 
     # def __new__(cls, string):
     #     """
