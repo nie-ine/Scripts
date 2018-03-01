@@ -534,7 +534,7 @@ def create_classes(ontology_home, template_file, graph, mappings, src_filename):
             dep_name = to_property_name(dep_name)
             alias = None
             if dep_name == class_name or dep_name in prop_data:
-                alias = "{}_{}".format(to_class_name(generate_alias(mappings[ns]), dep_name))
+                alias = "{}_{}".format(to_class_name(generate_alias(mappings[ns])), dep_name)
             if dep_name not in prop_data:
                 prop_data[dep_name] = []
             prop_data[dep_name].append((ns, alias))
@@ -626,7 +626,7 @@ def create_properties(ontology_home, template_file, graph, mappings, src_filenam
             dep_name = to_class_name(dep_name)
             alias = None
             if dep_name == class_name or dep_name in cls_data:
-                alias = "{}_{}".format(to_class_name(generate_alias(mappings[ns]), dep_name))
+                alias = "{}_{}".format(to_class_name(generate_alias(mappings[ns])), dep_name)
             if dep_name not in cls_data:
                 cls_data[dep_name] = []
             cls_data[dep_name].append((ns, alias))
