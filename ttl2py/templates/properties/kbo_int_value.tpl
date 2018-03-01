@@ -1,7 +1,7 @@
 #!/usr/local/bin/python3
 # -*- coding: utf-8 -*-
 
-import .from .hasValue import HasValue
+from .hasValue import HasValue
 
 """
 IntValue: definition of a datatype to handle Knora Base Ontology (KBO) integers
@@ -22,23 +22,10 @@ class IntValue(HasValue):  # Subclass int to get handy functions
 
     """
 
-#    def __new__(cls, integer):
-#        return super().__new__(int(integer))
-
     def __init__(self, integer):
-        #if integer is not None:
         super().__init__(int(integer))
-        #else:
-        #    super().__init__(None)
         self._name = "IntValue"
         self._value_type = "int_value"
-
-    #def __repr__(self):
-    #    return json
-    #    return """[{{'int_value': {:d}}}]""".format(super().__repr__())
-
-    #def __str__(self):
-    #    return """[{{'int_value': {:d}}}]""".format(super().__int__())
 
     def json(self):
         """
