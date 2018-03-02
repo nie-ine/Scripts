@@ -328,6 +328,14 @@ def class_dependencies(graph, uri, allowed_ns=None):
     except Exception as e:
         print(e)
 
+    # TODO: the following is just a quick-fix! Make it more intelligent! (SK_20180302)
+    try:
+        classes.remove('http://www.knora.org/ontology/knora-base#StillImageRepresentation')
+        if not classes:
+            classes.add('http://www.knora.org/ontology/knora-base#Resource')
+    except KeyError:
+        pass
+
     return classes
 
 
@@ -351,6 +359,10 @@ def property_dependencies(graph, uri):
             except Exception as e:
                 print(e)
         properties = {item for item in tmp_properties if not item.endswith('Value') or item[:-5] not in tmp_properties}
+
+        # TODO: the following is just a quick-fix! Make it more 'intelligent'! (SK_20180302)
+        properties.discard('http://www.knora.org/ontology/knora-base#hasStillImageFileValue')
+
     except Exception as e:
         print(e)
 
