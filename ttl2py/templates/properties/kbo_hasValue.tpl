@@ -22,8 +22,6 @@ class HasValue(object):
 
     """
 
-    _ontology_prefix = "http://www.knora.org/ontology"
-
     # def __new__(cls, string):
     #     """
     #
@@ -35,7 +33,7 @@ class HasValue(object):
     #     return None
 
     def __init__(self, value):
-        self._namespace = "knora-base"
+        self._namespace = "http://www.knora.org/ontology/knora-base"
         self._name = "hasValue"
         self._value = value
         self._value_type = "value"
@@ -45,9 +43,8 @@ class HasValue(object):
 
         :return:
         """
-        return """{:s}/{:s}#{:s}""".format(self._ontology_prefix,
-                                           self._namespace,
-                                           self._name)
+        return """{:s}#{:s}""".format(self._namespace,
+                                      self._name)
 
     def json(self):
         """

@@ -12,12 +12,14 @@ from datetime import datetime
 from rdflib import Graph, BNode, RDF, URIRef, OWL, RDFS
 from rdflib.namespace import Namespace, NamespaceManager
 
+from modules.filesystem import read_file, write_file
+
 
 __author__ = "Sascha KAUFMANN"
 __copyright__ = "Copyright 2018, NIE-INE"
 __credits__ = []
 __license__ = "3-Clause BSD License"
-__version__ = "0.0.1"
+__version__ = "0.0.2"
 __maintainer__ = "Sascha KAUFMANN"
 __email__ = "sascha.kaufmann@unibas.ch"
 __status__ = "Production"
@@ -570,7 +572,8 @@ def create_classes(ontology_home, template_file, graph, mappings, src_filename):
                     modules_to_import.append(import_str)
 
         if arg:
-            argument = " {},".format(", ".join(arg))
+            arg_init = ["{}=None".format(item) for item in arg]
+            argument = " {},".format(", ".join(arg_init))
             argument_comment = "\n{}".format("\n".join(arg_comment))
             class_properties = "\n{}\n".format("\n".join(cls_properties))
 
@@ -689,33 +692,15 @@ def read_template(filename):
     :param filename:
     :return:
     """
+
     try:
-        with open(filename, 'r', encoding='utf-8') as infile:
-            data = infile.read()
-        template = Template(data)
+        content = read_file(filename=filename)
+        template = Template(content)
     except Exception as e:
         print(e)
         template = None
 
     return template
-
-
-def write_file(filename, content):
-    """
-
-    :param filename:
-    :param content:
-    :return:
-    """
-
-    try:
-        with open(filename, 'w', encoding='utf-8') as outfile:
-            outfile.write(content)
-        return True
-    except Exception as e:
-        print(e)
-
-    return False
 
 
 def create_dirstruct(home_dir, ns):
