@@ -28,6 +28,7 @@ class HasLinkTo(HasValue):  # Subclass int to get handy functions
         :param string:
         """
         super(HasLinkTo, self).__init__(link)
+        self._property_type = 'link_value'
 
     def __repr__(self):
         """
@@ -49,12 +50,12 @@ class HasLinkTo(HasValue):  # Subclass int to get handy functions
         except TypeError:
             return
 
-    def json(self):
-        """
-
-        :return:
-        """
-        try:
-            return [{'link_value': '{:s}'.format(self._value)}]
-        except TypeError:
-            return
+#    def json(self):
+#        """
+#
+#        :return:
+#        """
+#        try:
+#            return [{'link_value': '{:s}'.format(self._value)}]
+#        except TypeError:
+#            return

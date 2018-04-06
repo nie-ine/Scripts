@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import json
+import collections
 
 """
 knora-base:hasValue: definition of class knora-base:hasValue
@@ -36,24 +37,15 @@ class HasValue(object):
         self._namespace = "http://www.knora.org/ontology/knora-base"
         self._name = "hasValue"
         self._value = value
-        self._value_type = "value"
+
+        self._property_type = 'value'
 
     def key(self):
         """
 
         :return:
         """
-        return """{:s}#{:s}""".format(self._namespace,
-                                      self._name)
-
-    def json(self):
-        """
-
-        :return:
-        """
-
-        return [{self._value_type: self._value}]
-
+        return """{:s}#{:s}""".format(self._namespace, self._name)
 
     def __repr__(self):
         """
@@ -61,7 +53,8 @@ class HasValue(object):
         :return:
         """
 
-        return json.dumps({self._value_type: self._value})
+        return self._value
+#        return json.dumps({self._value_type: self._value})
 
     def __str__(self):
         """
@@ -69,4 +62,24 @@ class HasValue(object):
         :return:
         """
 
-        return json.dumps({self._value_type: self._value})
+        return self._value
+#        return json.dumps({self._value_type: self._value})
+
+    def __json_struct__(self):
+        """
+
+        :return:
+        """
+
+        if self._value:
+            return [{self._property_type: self._value}]
+
+    def json(self):
+        """
+
+        :return:
+        """
+
+        value = self.__json_struct__()
+        if value:
+            return json.dumps(value)

@@ -28,25 +28,26 @@ class Seqnum(IntValue):  # Subclass int to get handy functions
         """
         super(Seqnum, self).__init__(number)
         self._name = 'seqnum'
-        self._value_type = 'seqnum'
+        self._property_type = 'seqnum'}
 
-    def __repr__(self):
-        """
+#    def __repr__(self):
+#        """
+#
+#        :return:
+#        """
+#        return """[{{'seqnum': {:d}}}]""".format(self._value)
 
-        :return:
-        """
-        return """[{{'seqnum': {:d}}}]""".format(self._value)
+#    def __str__(self):
+#        """
+#
+#        :return:
+#        """
+#        return """[{{'{:s}': {:d}}}]""".format(self._json['value_type'], self._value)
 
-    def __str__(self):
-        """
-
-        :return:
-        """
-        return """[{{'seqnum': {:d}}}]""".format(self._value)
-
-    def json(self):
-        """
-
-        :return:
-        """
-        return [{'seqnum': self._value}]
+#    def __json_struct__(self):
+#        """
+#
+#        :return:
+#        """
+#        if value:
+#            return [{self._property: self._value}]

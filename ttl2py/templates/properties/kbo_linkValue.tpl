@@ -4,7 +4,7 @@
 from .hasValue import HasValue
 
 """
-hasLinkToValue: definition to handle Knora Base Ontology (KBO)
+LinkValue: definition to handle Knora Base Ontology (KBO) dates
 """
 
 __author__ = "Sascha Kaufmann (sascha.kaufmann@unibas.ch)"
@@ -17,7 +17,7 @@ __email__ = "sascha.kaufmann@unibas.ch"
 __status__ = "Prototype"
 
 
-class HasLinkToValue(HasValue):  # Subclass int to get handy functions
+class LinkValue(HasValue):
     """
 
     """
@@ -27,7 +27,8 @@ class HasLinkToValue(HasValue):  # Subclass int to get handy functions
 
         :param string:
         """
-        super(HasLinkToValue, self).__init__(link)
+        super(HasLinkTo, self).__init__(link)
+        self._property_type = 'link_value'
 
     def __repr__(self):
         """
@@ -46,15 +47,5 @@ class HasLinkToValue(HasValue):  # Subclass int to get handy functions
         """
         try:
             return """['link_value': '{:s}']""".format(self._value)
-        except TypeError:
-            return
-
-    def json(self):
-        """
-
-        :return:
-        """
-        try:
-            return [{'link_value': '{:s}'.format(self._value)}]
         except TypeError:
             return

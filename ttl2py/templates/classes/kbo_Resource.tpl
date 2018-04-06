@@ -18,6 +18,7 @@ class Resource(ABC):
 
     def __init__(self, label, seqnum=None):
         self._namespace = "http://www.knora.org/ontology/knora-base"
+        self._project_id = None
         self._name = "Resource"
         self._label = label
         self.seqnum = seqnum
@@ -54,17 +55,6 @@ class Resource(ABC):
 
         # We won't deal with kbo.Resource directly
         if not type(self) is Resource and self._namespace:
-            try:
-                namespace_components = self._namespace.split('/')
-                if len(namespace_components) > 3:
-                    project_id = "{:s}/{:s}".format(self._project_prefix,
-                                                    namespace_components[-1])
-                else:
-                    return None
-            except Exception as e:
-                print(e)
-                return None
-
             restype_id = "{:s}#{:s}".format(self._namespace, self._name)
             properties = {}
             for attr, value in self.__dict__.items():
@@ -74,8 +64,8 @@ class Resource(ABC):
                     if value._value is None:
                         continue
                     properties[value.key()] = value.json()
-                except Exception:
-                    pass
+                except Exception as e:
+                    print(e)
 
             if self.seqnum == 0 or self.seqnum:
                 key = 'http://www.knora.org/ontology/knora-base#seqnum'
@@ -83,7 +73,7 @@ class Resource(ABC):
 
             return {'restype_id': restype_id,
                     'label': self._label,
-                    'project_id': project_id,
+                    'project_id': self._project_id,
                     'properties': properties}
         return None
 

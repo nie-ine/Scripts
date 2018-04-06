@@ -28,6 +28,7 @@ __status__ = "Production"
 header_information = None
 
 _KNORA_NS = Namespace("http://www.knora.org/ontology/")
+_KBO_NS = Namespace("http://www.knora.org/ontology/knora-base")
 _DIRSEP = os.sep
 _TIMESTAMP = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 
@@ -384,13 +385,28 @@ def property_class_dependencies(graph, uri, allowed_ns=None):
     try:
         for o in graph.objects(subject=URIRef(uri),
                                predicate=RDFS.subPropertyOf):
-            str_o = str(o)
-            if isinstance(o, URIRef) and str_o != uri:
-                ns, frag = ns_fragement(str_o)
-                if ns and frag:
-                    if allowed_ns and ns not in allowed_ns:
-                        continue
-                    classes.add(str_o)
+
+            if isinstance(o, URIRef):
+                str_o = str(o)
+                if str_o == 'http://www.knora.org/ontology/knora-base#hasValue':
+                    for (p , o) in graph.predicate_objects(subject=URIRef(uri)):
+                        b = 0
+                        if str(p) == "http://www.knora.org/ontology/knora-base#objectClassConstraint":
+                            str_o = str(o)
+                            if str_o != uri:
+                                ns, frag = ns_fragement(str_o)
+                                if ns and frag:
+                                    if allowed_ns and ns not in allowed_ns:
+                                        continue
+                                    classes.add(str_o)
+                                    break
+                elif str_o != uri:
+                    ns, frag = ns_fragement(str_o)
+                    if ns and frag:
+                        if allowed_ns and ns not in allowed_ns:
+                            continue
+                        classes.add(str_o)
+
     except Exception as e:
         print(e)
 
@@ -725,6 +741,7 @@ def create_dirstruct(home_dir, ns):
     template = read_template(filename=filename)
     content = template.substitute(namespace=ns)
     filename="{}{}__init__.py".format(cur_dir, _DIRSEP)
+    print(filename, content)
     write_file(filename=filename, content=content)
 
     return cur_dir
@@ -824,9 +841,17 @@ def create_ns_structure(ns_structure):
     """
 
     for path in ns_structure:
+
         for directory in ['classes', 'properties']:
             cur_dir = "{}{}{}".format(path, _DIRSEP, directory)
             pathlib.Path(cur_dir).mkdir(parents=True, exist_ok=True)
+
+        cur_dir = path.split('/')[-1]
+        ontology_ns = "http://www.knora.org/ontology/{}".format(cur_dir)
+        project_id = "http://data.knora.org/projects/{}".format(cur_dir)
+        write_file(filename="{}{}__init__.py".format(path, _DIRSEP),
+                   content="ONTOLOGY_NS = '{}'\nPROJECT_ID = '{}'\n".format(ontology_ns, project_id))
+
     return
 
 

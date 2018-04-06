@@ -24,13 +24,13 @@ class IntValue(HasValue):  # Subclass int to get handy functions
 
     def __init__(self, integer):
         super().__init__(int(integer))
-        self._name = "IntValue"
-        self._value_type = "int_value"
+        self._name = 'IntValue'
+        self._property_type = 'int_value'}
 
-    def json(self):
+    def __json_struct__(self):
         """
 
         :return:
         """
-        if self._value or self._value == 0:
-            return [{self._value_type: self._value}]
+        if self._value or self.value == 0:
+            return [{self._property_type: self._value}]

@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 $module_import
+from .. import ONTOLOGY_NS, PROJECT_ID
 
 """
 $general_comment
@@ -20,6 +21,7 @@ $argument_comment
 
         super().__init__(**kwargs)
 
-        self._namespace = "$namespace"
+        self._namespace = ONTOLOGY_NS
+        self._project_id = PROJECT_ID
         self._name = "$class_name"
 $class_properties

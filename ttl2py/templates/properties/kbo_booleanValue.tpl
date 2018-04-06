@@ -30,27 +30,36 @@ class HasBoolean(HasValue):  # Subclass int to get handy functions
         """
         super(HasBoolean, self).__init__(bool(boolean))
         self._name = "hasBoolean"
+        self._property_type: 'boolean_value'}
 
-    def __repr__(self):
-        """
+#    def __repr__(self):
+#        """
+#
+#        :return:
+#        """
+#        if self._value or self._value is False:
+#            return """[{{'boolean_value': {}}}]""".format(self._value)
 
-        :return:
-        """
-        if self._value or self._value is False:
-            return """[{{'boolean_value': {}}}]""".format(self._value)
+#    def __str__(self):
+#        """
+#
+#        :return:
+#        """
+#        if self._value or self._value is False:
+#            return """[{{'boolean_value': {}}}]""".format(self._value)
 
-    def __str__(self):
-        """
+#    def __json_struct__(self):
+#        """
+#
+#        :return:
+#        """
+#
+#        return [{self._json['value_type']: self._value}]
 
-        :return:
-        """
-        if self._value or self._value is False:
-            return """[{{'boolean_value': {}}}]""".format(self._value)
-
-    def json(self):
-        """
-
-        :return:
-        """
-        if self._value or self._value is False:
-            return [{'boolean_value': self._value}]
+#    def json(self):
+#        """
+#
+#        :return:
+#        """
+#        if self._value or self._value is False:
+#            return [{'boolean_value': self._value}]
