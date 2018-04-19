@@ -848,7 +848,7 @@ def create_ns_structure(ns_structure):
 
         cur_dir = path.split('/')[-1]
         ontology_ns = "http://www.knora.org/ontology/{}".format(cur_dir)
-        project_id = "http://data.knora.org/projects/{}".format(cur_dir)
+        project_id = "http://rdfh.ch/projects/{}".format(cur_dir)
         write_file(filename="{}{}__init__.py".format(path, _DIRSEP),
                    content="ONTOLOGY_NS = '{}'\nPROJECT_ID = '{}'\n".format(ontology_ns, project_id))
 

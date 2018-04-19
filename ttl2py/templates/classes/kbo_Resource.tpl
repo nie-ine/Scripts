@@ -14,7 +14,7 @@ class Resource(ABC):
     """
 
     _ontology = "http://www.knora.org/ontology"
-    _project_prefix = "http://data.knora.org/projects"
+    _project_prefix = "http://rdfh.ch/projects"
 
     def __init__(self, label, seqnum=None):
         self._namespace = "http://www.knora.org/ontology/knora-base"
@@ -63,7 +63,7 @@ class Resource(ABC):
                 try:
                     if value._value is None:
                         continue
-                    properties[value.key()] = value.json()
+                    properties[value.key()] = value.__json_struct__()
                 except Exception as e:
                     print(e)
 
